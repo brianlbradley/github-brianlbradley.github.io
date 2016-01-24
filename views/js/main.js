@@ -1,16 +1,36 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Gist
+ @brianlbradley
+ Watch 1
+  Star 0
+  Fork 0 0per8/Udacity-Project-4
+ Code  Issues 0  Pull requests 0  Wiki  Pulse  Graphs
+Branch: master Find file Copy pathUdacity-Project-4/views/js/main.js
+04a4c3e  on Mar 15, 2015
+@0per8 0per8 Udacity Project 4
+1 contributor
+RawBlameHistory     617 lines (540 sloc)  26 KB
+/*
+Henry here...
+As usual, all of my comments will be non-indented and will start with
+"Henry here..." for noticeability. This was a fun project and I learned
+a ton. Hope it passes your rigorous rubrick.
+Thanks!
+*/
+
 /*
 Welcome to the 60fps project! Your goal is to make Cam's Pizzeria website run
 jank-free at 60 frames per second.
-
 There are two major issues in this code that lead to sub-60fps performance. Can
 you spot and fix both?
-
-
 Built into the code, you'll find a few instances of the User Timing API
 (window.performance), which will be console.log()ing frame rate data into the
 browser console. To learn more about User Timing API, check out:
 http://www.html5rocks.com/en/tutorials/webperformance/usertiming/
-
 Creator:
 Cameron Pittman, Udacity Course Developer
 cameron *at* udacity *dot* com
@@ -202,15 +222,15 @@ function getAdj(x){
     case "scientific":
       var scientific = ["scientific", "technical", "digital", "programming", "calculating", "formulating", "cyberpunk", "mechanical", "technological",
       "innovative", "brainy", "chemical", "quantum", "astro", "space", "theoretical", "atomic", "electronic", "gaseous", "investigative", "solar",
-      "extinct", "galactic"]
+      "extinct", "galactic"];
       return scientific;
     default:
-      var scientific = ["scientific", "technical", "digital", "programming", "calculating", "formulating", "cyberpunk", "mechanical", "technological",
+      var scientific_default = ["scientific", "technical", "digital", "programming", "calculating", "formulating", "cyberpunk", "mechanical", "technological",
       "innovative", "brainy", "chemical", "quantum", "astro", "space", "theoretical", "atomic", "electronic", "gaseous", "investigative", "solar",
-      "extinct", "galactic"]
-      return scientific;
-  };
-};
+      "extinct", "galactic"];
+      return scientific_default;
+  }
+}
 
 // Pulls noun out of array using random number sent from generator
 function getNoun(y) {
@@ -274,13 +294,13 @@ function getNoun(y) {
       "universe", "gravity", "darkMatter", "constellation", "circuit", "asteroid"];
       return scifi;
     default:
-      var scifi = ["robot", "alien", "raygun", "spaceship", "UFO", "rocket", "phaser", "astronaut", "spaceman", "planet", "star", "galaxy",
+      var scifi_default = ["robot", "alien", "raygun", "spaceship", "UFO", "rocket", "phaser", "astronaut", "spaceman", "planet", "star", "galaxy",
       "computer", "future", "timeMachine", "wormHole", "timeTraveler", "scientist", "invention", "martian", "pluto", "jupiter", "saturn", "mars",
       "quasar", "blackHole", "warpDrive", "laser", "orbit", "gears", "molecule", "electron", "neutrino", "proton", "experiment", "photon", "apparatus",
       "universe", "gravity", "darkMatter", "constellation", "circuit", "asteroid"];
-      return scifi;
-  };
-};
+      return scifi_default;
+  }
+}
 
 var adjectives = ["dark", "color", "whimsical", "shiny", "noise", "apocalyptic", "insulting", "praise", "scientific"];  // types of adjectives for pizza titles
 var nouns = ["animals", "everyday", "fantasy", "gross", "horror", "jewelry", "places", "scifi"];                        // types of nouns for pizza titles
@@ -293,44 +313,44 @@ function generator(adj, noun) {
   var randomNoun = parseInt(Math.random() * nouns.length);
   var name = "The " + adjectives[randomAdjective].capitalize() + " " + nouns[randomNoun].capitalize();
   return name;
-};
+}
 
 // Chooses random adjective and random noun
 function randomName() {
   var randomNumberAdj = parseInt(Math.random() * adjectives.length);
   var randomNumberNoun = parseInt(Math.random() * nouns.length);
   return generator(adjectives[randomNumberAdj], nouns[randomNumberNoun]);
-};
+}
 
 // These functions return a string of a random ingredient from each respective category of ingredients.
 var selectRandomMeat = function() {
   var randomMeat = pizzaIngredients.meats[Math.floor((Math.random() * pizzaIngredients.meats.length))];
   return randomMeat;
-}
+};
 
 var selectRandomNonMeat = function() {
   var randomNonMeat = pizzaIngredients.nonMeats[Math.floor((Math.random() * pizzaIngredients.nonMeats.length))];
   return randomNonMeat;
-}
+};
 
 var selectRandomCheese = function() {
   var randomCheese = pizzaIngredients.cheeses[Math.floor((Math.random() * pizzaIngredients.cheeses.length))];
   return randomCheese;
-}
+};
 
 var selectRandomSauce = function() {
   var randomSauce = pizzaIngredients.sauces[Math.floor((Math.random() * pizzaIngredients.sauces.length))];
   return randomSauce;
-}
+};
 
 var selectRandomCrust = function() {
   var randomCrust = pizzaIngredients.crusts[Math.floor((Math.random() * pizzaIngredients.crusts.length))];
   return randomCrust;
-}
+};
 
 var ingredientItemizer = function(string) {
   return "<li>" + string + "</li>";
-}
+};
 
 // Returns a string with random pizza ingredients nested inside <li> tags
 var makeRandomPizza = function() {
@@ -344,11 +364,11 @@ var makeRandomPizza = function() {
     pizza = pizza + ingredientItemizer(selectRandomMeat());
   }
 
-  for (var i = 0; i < numberOfNonMeats; i++) {
+  for (var j = 0; j < numberOfNonMeats; j++) {
     pizza = pizza + ingredientItemizer(selectRandomNonMeat());
   }
 
-  for (var i = 0; i < numberOfCheeses; i++) {
+  for (var k = 0; k < numberOfCheeses; k++) {
     pizza = pizza + ingredientItemizer(selectRandomCheese());
   }
 
@@ -356,7 +376,7 @@ var makeRandomPizza = function() {
   pizza = pizza + ingredientItemizer(selectRandomCrust());
 
   return pizza;
-}
+};
 
 // returns a DOM element for each pizza
 var pizzaElementGenerator = function(i) {
@@ -372,10 +392,24 @@ var pizzaElementGenerator = function(i) {
   pizzaImage = document.createElement("img");
   pizzaDescriptionContainer = document.createElement("div");
 
+/*
+Henry here... There are only 3 possible states for sizes. I decided to
+rework the way sizes were handled in the javascript for more efficiency.
+Width and Height properties belong in CSS. I made 3 separate
+"randomPizzaContainer" classes in the CSS, with just the width varying
+between them. I know this violates "Don't Repeat Yourself" but since
+I'm optimizing for UX, I don't mind violating it in this particular
+case. Handling this stuff inline is a bad idea. I changed the HTML for
+the two premade pizzas as well...
   pizzaContainer.classList.add("randomPizzaContainer");
   pizzaContainer.style.width = "33.33%";
   pizzaContainer.style.height = "325px";
-  pizzaContainer.id = "pizza" + i;                // gives each pizza element a unique id
+*/
+
+  pizzaContainer.id = "pizza" + i;         // gives each pizza element a unique id
+
+  pizzaContainer.classList.add("randomPizzaContainerMedium");
+
   pizzaImageContainer.classList.add("col-md-6");
 
   pizzaImage.src = "images/pizza.png";
@@ -396,23 +430,23 @@ var pizzaElementGenerator = function(i) {
   pizzaContainer.appendChild(pizzaDescriptionContainer);
 
   return pizzaContainer;
-}
+};
 
 // resizePizzas(size) is called when the slider in the "Our Pizzas" section of the website moves.
 var resizePizzas = function(size) {
   window.performance.mark("mark_start_resize");   // User Timing API function
 
   // Changes the value for the size of the pizza above the slider
-  function changeSliderLabel(size) {
+    function changeSliderLabel(size) {
     switch(size) {
       case "1":
-        document.querySelector("#pizzaSize").innerHTML = "Small";
+        document.getElementById("pizzaSize").innerHTML = "Small";
         return;
       case "2":
-        document.querySelector("#pizzaSize").innerHTML = "Medium";
+        document.getElementById("pizzaSize").innerHTML = "Medium";
         return;
       case "3":
-        document.querySelector("#pizzaSize").innerHTML = "Large";
+        document.getElementById("pizzaSize").innerHTML = "Large";
         return;
       default:
         console.log("bug in changeSliderLabel");
@@ -422,37 +456,55 @@ var resizePizzas = function(size) {
   changeSliderLabel(size);
 
   // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
-  function determineDx (elem, size) {
-    var oldwidth = elem.offsetWidth;
-    var windowwidth = document.querySelector("#randomPizzas").offsetWidth;
-    var oldsize = oldwidth / windowwidth;
+  // TODO: change to 3 sizes? no more xl?
+  // Changes the slider value to a percent width
 
-    // Changes the slider value to a percent width
-    function sizeSwitcher (size) {
-      switch(size) {
-        case "1":
-          return 0.25;
-        case "2":
-          return 0.3333;
-        case "3":
-          return 0.5;
-        default:
-          console.log("bug in sizeSwitcher");
-      }
+/*
+Henry here... So, I decided to eliminate the determineDx function entirely as I went about this
+from a different angle. I could probably have merged this function with the changeSliderLabel
+function but that would have been trading performance for readability and separation of functions.
+*/
+
+  function sizeSwitcher (size) {
+    switch(size) {
+      case "1":
+        return "randomPizzaContainerSmall";
+      case "2":
+        return "randomPizzaContainerMedium";
+      case "3":
+       return "randomPizzaContainerLarge";
+      default:
+        console.log("bug in sizeSwitcher");
     }
+  };
 
-    var newsize = sizeSwitcher(size);
-    var dx = (newsize - oldsize) * windowwidth;
+/*
+Henry here... So, the following changePizzaSizes function is an idea I had to use document fragments
+to avoid paint time. However, it added a ton of scripting time so I left it with the simpler solution.
+  function changePizzaSizes2(size) {
+    var pizzasDiv = document.createDocumentFragment();
+    for (var i = 2; i< 100; i++) {
+      pizzasDiv.appendChild(pizzaElementGenerator(i, size));
+    }
+    document.getElementById("randomPizzas").appendChild(pizzasDiv);
+    console.log(pizzasDiv);
+  };
+  changePizzaSizes2(size);
+*/
 
-    return dx;
-  }
 
-  // Iterates through pizza elements on the page and changes their widths
+/*
+Henry here... OK, so this changePizzaSizes function was overhauled. Because of the changes above,
+I can just iterate over all the childNodes of the randomPizzas container, and change their classNames
+as appropriate.
+*/
+
   function changePizzaSizes(size) {
-    for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
-      var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
-      var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
-      document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
+    var randomPizzaContainers = document.getElementById("randomPizzas").childNodes;
+    var dx = sizeSwitcher(size);
+
+    for (var i = 0; i < randomPizzaContainers.length; i++) {
+      randomPizzaContainers[i].className = dx;
     }
   }
 
@@ -463,7 +515,7 @@ var resizePizzas = function(size) {
   window.performance.measure("measure_pizza_resize", "mark_start_resize", "mark_end_resize");
   var timeToResize = window.performance.getEntriesByName("measure_pizza_resize");
   console.log("Time to resize pizzas: " + timeToResize[0].duration + "ms");
-}
+};
 
 window.performance.mark("mark_start_generating"); // collect timing data
 
@@ -497,39 +549,27 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
 // Moves the sliding background pizzas based on scroll position
+
+/*
+Henry here... Why look up the value of document.body.scrollTop 200 times? We can do it once
+and save the value to "performaceFix" and save a bunch of calculation time later on. I want
+as little in my loop blocks as possible.
+Also, inside the for loop, I decided to simplfy the math a bit and  use translate3d as it
+avoids unnecessary reflow on scroll. It does this by using the GPU instead of a CPU thread.
+ALSO, querySelectorAll is really, really bad for performance.
+*/
+
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  var items = document.querySelectorAll('.mover');
-
-  var verticalPagePosition = (document.body.scrollTop / 1250);
+  var items = document.getElementsByClassName("mover");
+  var performanceFix = document.body.scrollTop;
 
   for (var i = 0; i < items.length; i++) {
-
-
-    var phase = Math.sin(verticalPagePosition + (i % 5));
-
-     // Let's log out all these numbers and see!
-     console.log(phase,document.body.scrollTop / 1250)
-
-     //Let's log out all these numbers and see!
-     //console.log(phase,document.body.scrollTop / 1250)
-
-     /* Using style.left is there a more efficient way to chanage the position of this object?
-     It looks like the Layout gets retriggered every time we scroll.
-     Remember how the browser renders our objects Dom CSSOM JS Render
-     Tree Layout Paint
-     Perhaps CSS3 hardware acceleration can reduce the need trigger a re-layout?
-     Can we offload the CPU....
-     The CSS 'transforms' property can help us here.
-     */
-
-    var left = -items[i].basicLeft + 1000 * phase + 'px';
-
-    items[i].style.transform = "translateX("+left+") translateZ(0)";
-
-    //items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    var phase = Math.sin((performanceFix / 1250) + (i % 5));
+    translateBy = (i % 8) * 256 + 100 * phase + "px";
+    items[i].style.transform = "translate3d("+translateBy+", 0, 0)";
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -546,19 +586,37 @@ function updatePositions() {
 window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
+
+/*
+Henry one last time... SOOOOOO, We were making wayyyyyy too many pizzas. We only want to make as many
+as the viewer can see. So, instead of making the arbitrary 200, we're going to figure out how many
+our user can view (by obtaining viewport height and width in pixels) and then making as many as are
+appropriate for that height.
+ALSO, for separation of concerns reasons, I'm going to move some CSS over to style.css. The lines
+that I moved are:
+    elem.style.height = "100px";
+    elem.style.width = "73.333px";
+ALSO, I made sure that the "movingPizzas1" element takes up the width of
+the page. This simplified the math involved to get the effect I wanted.
+*/
+
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  //Do we need 200?
-  for (var i = 0; i < 25; i++) {
+
+  var windowWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  var amountOfPizzasToMake = Math.ceil(windowWidth/256 * 8);
+  document.getElementById("movingPizzas1").className = "col-md-12";
+  for (var i = 0; i < amountOfPizzasToMake; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
-    elem.style.height = "100px";
-    elem.style.width = "73.333px";
-    elem.basicLeft = (i % cols) * s;
+    elem.style.left = (i % 8) * 256;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.querySelector("#movingPizzas1").appendChild(elem);
+
+    document.getElementById("movingPizzas1").appendChild(elem);
   }
   updatePositions();
 });
+Status API Training Shop Blog About Pricing
+© 2016 GitHub, Inc. Terms Privacy Security Contact Help
