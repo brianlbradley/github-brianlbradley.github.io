@@ -1,16 +1,28 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Gist
+ @brianlbradley
+ Watch 1
+  Star 0
+  Fork 1 gofranshukair/udacity-project-4
+ Code  Issues 0  Pull requests 0  Wiki  Pulse  Graphs
+Branch: master Find file Copy pathudacity-project-4/views/js/main.js
+90d9d51  on Feb 15, 2015
+@gofranshukair gofranshukair First commit
+1 contributor
+RawBlameHistory     Executable File  542 lines (487 sloc)  23.4 KB
 /*
 Welcome to the 60fps project! Your goal is to make Cam's Pizzeria website run
 jank-free at 60 frames per second.
-
 There are two major issues in this code that lead to sub-60fps performance. Can
 you spot and fix both?
-
-
 Built into the code, you'll find a few instances of the User Timing API
 (window.performance), which will be console.log()ing frame rate data into the
 browser console. To learn more about User Timing API, check out:
 http://www.html5rocks.com/en/tutorials/webperformance/usertiming/
-
 Creator:
 Cameron Pittman, Udacity Course Developer
 cameron *at* udacity *dot* com
@@ -202,15 +214,15 @@ function getAdj(x){
     case "scientific":
       var scientific = ["scientific", "technical", "digital", "programming", "calculating", "formulating", "cyberpunk", "mechanical", "technological",
       "innovative", "brainy", "chemical", "quantum", "astro", "space", "theoretical", "atomic", "electronic", "gaseous", "investigative", "solar",
-      "extinct", "galactic"]
+      "extinct", "galactic"];
       return scientific;
     default:
-      var scientific = ["scientific", "technical", "digital", "programming", "calculating", "formulating", "cyberpunk", "mechanical", "technological",
+      var scientific_default = ["scientific", "technical", "digital", "programming", "calculating", "formulating", "cyberpunk", "mechanical", "technological",
       "innovative", "brainy", "chemical", "quantum", "astro", "space", "theoretical", "atomic", "electronic", "gaseous", "investigative", "solar",
-      "extinct", "galactic"]
-      return scientific;
-  };
-};
+      "extinct", "galactic"];
+      return scientific_default;
+  }
+}
 
 // Pulls noun out of array using random number sent from generator
 function getNoun(y) {
@@ -274,13 +286,13 @@ function getNoun(y) {
       "universe", "gravity", "darkMatter", "constellation", "circuit", "asteroid"];
       return scifi;
     default:
-      var scifi = ["robot", "alien", "raygun", "spaceship", "UFO", "rocket", "phaser", "astronaut", "spaceman", "planet", "star", "galaxy",
+      var scifi_default = ["robot", "alien", "raygun", "spaceship", "UFO", "rocket", "phaser", "astronaut", "spaceman", "planet", "star", "galaxy",
       "computer", "future", "timeMachine", "wormHole", "timeTraveler", "scientist", "invention", "martian", "pluto", "jupiter", "saturn", "mars",
       "quasar", "blackHole", "warpDrive", "laser", "orbit", "gears", "molecule", "electron", "neutrino", "proton", "experiment", "photon", "apparatus",
       "universe", "gravity", "darkMatter", "constellation", "circuit", "asteroid"];
-      return scifi;
-  };
-};
+      return scifi_default;
+  }
+}
 
 var adjectives = ["dark", "color", "whimsical", "shiny", "noise", "apocalyptic", "insulting", "praise", "scientific"];  // types of adjectives for pizza titles
 var nouns = ["animals", "everyday", "fantasy", "gross", "horror", "jewelry", "places", "scifi"];                        // types of nouns for pizza titles
@@ -293,44 +305,44 @@ function generator(adj, noun) {
   var randomNoun = parseInt(Math.random() * nouns.length);
   var name = "The " + adjectives[randomAdjective].capitalize() + " " + nouns[randomNoun].capitalize();
   return name;
-};
+}
 
 // Chooses random adjective and random noun
 function randomName() {
   var randomNumberAdj = parseInt(Math.random() * adjectives.length);
   var randomNumberNoun = parseInt(Math.random() * nouns.length);
   return generator(adjectives[randomNumberAdj], nouns[randomNumberNoun]);
-};
+}
 
 // These functions return a string of a random ingredient from each respective category of ingredients.
 var selectRandomMeat = function() {
   var randomMeat = pizzaIngredients.meats[Math.floor((Math.random() * pizzaIngredients.meats.length))];
   return randomMeat;
-}
+};
 
 var selectRandomNonMeat = function() {
   var randomNonMeat = pizzaIngredients.nonMeats[Math.floor((Math.random() * pizzaIngredients.nonMeats.length))];
   return randomNonMeat;
-}
+};
 
 var selectRandomCheese = function() {
   var randomCheese = pizzaIngredients.cheeses[Math.floor((Math.random() * pizzaIngredients.cheeses.length))];
   return randomCheese;
-}
+};
 
 var selectRandomSauce = function() {
   var randomSauce = pizzaIngredients.sauces[Math.floor((Math.random() * pizzaIngredients.sauces.length))];
   return randomSauce;
-}
+};
 
 var selectRandomCrust = function() {
   var randomCrust = pizzaIngredients.crusts[Math.floor((Math.random() * pizzaIngredients.crusts.length))];
   return randomCrust;
-}
+};
 
 var ingredientItemizer = function(string) {
   return "<li>" + string + "</li>";
-}
+};
 
 // Returns a string with random pizza ingredients nested inside <li> tags
 var makeRandomPizza = function() {
@@ -344,11 +356,11 @@ var makeRandomPizza = function() {
     pizza = pizza + ingredientItemizer(selectRandomMeat());
   }
 
-  for (var i = 0; i < numberOfNonMeats; i++) {
+  for (var j = 0; j < numberOfNonMeats; j++) {
     pizza = pizza + ingredientItemizer(selectRandomNonMeat());
   }
 
-  for (var i = 0; i < numberOfCheeses; i++) {
+  for (var k = 0; k < numberOfCheeses; k++) {
     pizza = pizza + ingredientItemizer(selectRandomCheese());
   }
 
@@ -356,7 +368,7 @@ var makeRandomPizza = function() {
   pizza = pizza + ingredientItemizer(selectRandomCrust());
 
   return pizza;
-}
+};
 
 // returns a DOM element for each pizza
 var pizzaElementGenerator = function(i) {
@@ -396,7 +408,7 @@ var pizzaElementGenerator = function(i) {
   pizzaContainer.appendChild(pizzaDescriptionContainer);
 
   return pizzaContainer;
-}
+};
 
 // resizePizzas(size) is called when the slider in the "Our Pizzas" section of the website moves.
 var resizePizzas = function(size) {
@@ -427,6 +439,7 @@ var resizePizzas = function(size) {
     var windowwidth = document.querySelector("#randomPizzas").offsetWidth;
     var oldsize = oldwidth / windowwidth;
 
+    // TODO: change to 3 sizes? no more xl?
     // Changes the slider value to a percent width
     function sizeSwitcher (size) {
       switch(size) {
@@ -463,7 +476,7 @@ var resizePizzas = function(size) {
   window.performance.measure("measure_pizza_resize", "mark_start_resize", "mark_end_resize");
   var timeToResize = window.performance.getEntriesByName("measure_pizza_resize");
   console.log("Time to resize pizzas: " + timeToResize[0].duration + "ms");
-}
+};
 
 window.performance.mark("mark_start_generating"); // collect timing data
 
@@ -502,34 +515,11 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   var items = document.querySelectorAll('.mover');
-
-  var verticalPagePosition = (document.body.scrollTop / 1250);
-
+  var number=document.body.scrollTop / 1250;
   for (var i = 0; i < items.length; i++) {
-
-
-    var phase = Math.sin(verticalPagePosition + (i % 5));
-
-     // Let's log out all these numbers and see!
-     console.log(phase,document.body.scrollTop / 1250)
-
-     //Let's log out all these numbers and see!
-     //console.log(phase,document.body.scrollTop / 1250)
-
-     /* Using style.left is there a more efficient way to chanage the position of this object?
-     It looks like the Layout gets retriggered every time we scroll.
-     Remember how the browser renders our objects Dom CSSOM JS Render
-     Tree Layout Paint
-     Perhaps CSS3 hardware acceleration can reduce the need trigger a re-layout?
-     Can we offload the CPU....
-     The CSS 'transforms' property can help us here.
-     */
-
-    var left = -items[i].basicLeft + 1000 * phase + 'px';
-
-    items[i].style.transform = "translateX("+left+") translateZ(0)";
-
+    var phase = Math.sin(number + (i % 5));
     //items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    items[i].style.transform = 'translateX(' + (100*phase) + 'px)';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -549,8 +539,7 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  //Do we need 200?
-  for (var i = 0; i < 25; i++) {
+  for (var i = 0; i < 20; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
@@ -562,3 +551,5 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   updatePositions();
 });
+Status API Training Shop Blog About Pricing
+© 2016 GitHub, Inc. Terms Privacy Security Contact Help
