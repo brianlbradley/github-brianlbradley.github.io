@@ -502,10 +502,19 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   var items = document.querySelectorAll('.mover');
+
+  var verticalPagePosition = (document.body.scrollTop / 1250);
+
   for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+
+
+    var phase = Math.sin(verticalPagePosition + (i % 5));
+
      // Let's log out all these numbers and see!
      console.log(phase,document.body.scrollTop / 1250)
+
+     //Let's log out all these numbers and see!
+     //console.log(phase,document.body.scrollTop / 1250)
 
      /* Using style.left is there a more efficient way to chanage the position of this object?
      It looks like the Layout gets retriggered every time we scroll.
@@ -516,7 +525,11 @@ function updatePositions() {
      The CSS 'transforms' property can help us here.
      */
 
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    var left = -items[i].basicLeft + 1000 * phase + 'px';
+
+    items[i].style.transform = "translateX("+left+") translateZ(0)";
+
+    //items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -537,7 +550,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
   //Do we need 200?
-  for (var i = 0; i < 200; i++) {
+  for (var i = 0; i < 25; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
