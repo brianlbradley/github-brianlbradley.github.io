@@ -1,16 +1,12 @@
 /*
 Welcome to the 60fps project! Your goal is to make Cam's Pizzeria website run
 jank-free at 60 frames per second.
-
 There are two major issues in this code that lead to sub-60fps performance. Can
 you spot and fix both?
-
-
 Built into the code, you'll find a few instances of the User Timing API
 (window.performance), which will be console.log()ing frame rate data into the
 browser console. To learn more about User Timing API, check out:
 http://www.html5rocks.com/en/tutorials/webperformance/usertiming/
-
 Creator:
 Cameron Pittman, Udacity Course Developer
 cameron *at* udacity *dot* com
@@ -502,34 +498,9 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   var items = document.querySelectorAll('.mover');
-
-  var verticalPagePosition = (document.body.scrollTop / 1250);
-
   for (var i = 0; i < items.length; i++) {
-
-
-    var phase = Math.sin(verticalPagePosition + (i % 5));
-
-     // Let's log out all these numbers and see!
-     console.log(phase,document.body.scrollTop / 1250)
-
-     //Let's log out all these numbers and see!
-     //console.log(phase,document.body.scrollTop / 1250)
-
-     /* Using style.left is there a more efficient way to chanage the position of this object?
-     It looks like the Layout gets retriggered every time we scroll.
-     Remember how the browser renders our objects Dom CSSOM JS Render
-     Tree Layout Paint
-     Perhaps CSS3 hardware acceleration can reduce the need trigger a re-layout?
-     Can we offload the CPU....
-     The CSS 'transforms' property can help us here.
-     */
-
-    var left = -items[i].basicLeft + 1000 * phase + 'px';
-
-    items[i].style.transform = "translateX("+left+") translateZ(0)";
-
-    //items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -549,8 +520,7 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  //Do we need 200?
-  for (var i = 0; i < 25; i++) {
+  for (var i = 0; i < 200; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
