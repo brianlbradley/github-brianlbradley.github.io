@@ -1,0 +1,99 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Gist
+ @brianlbradley
+ Watch 1
+  Star 0
+  Fork 0 0per8/Udacity-Project-4
+ Code  Issues 0  Pull requests 0  Wiki  Pulse  Graphs
+Branch: master Find file Copy pathUdacity-Project-4/views/css/style.css
+04a4c3e  on Mar 15, 2015
+@0per8 0per8 Udacity Project 4
+1 contributor
+RawBlameHistory     82 lines (68 sloc)  1.42 KB
+/** {
+  outline: 1px solid red !important;
+}*/
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -box-sizing: border-box;
+}
+
+body {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  background: black;
+}
+
+input {
+  background: grey;
+  font-size: 18px;
+}
+
+form {
+  display: inline-block;
+}
+
+.centered {
+  text-align: center;
+}
+
+#pizzaSize {
+  font-weight: 800;
+}
+
+.mover {
+  position: fixed;
+
+/*
+Henry here... So, I noticed that over in main.js, the last event listener function was setting
+the same css values over and over again. That's not only a separation of concerns problem, but
+also a slight performace problem.
+So, I added the common height value here, and modified the width value as well.
+*/
+  height: 100px;
+  width: 73.333px;
+  z-index: -1;
+}
+
+/*
+Henry here... I implemented 3 different styles; one for each pizza container. This will impact
+initial load time of the page, but will make it so there are less computations done via js. I
+think for this project, the tradeoff is worth it.
+*/
+
+.randomPizzaContainerSmall {
+  width: 25%;
+  height: 325px;
+  float: left;
+  display: flex;
+}
+
+.randomPizzaContainerMedium {
+  width: 33.33%;
+  height: 325px;
+  float: left;
+  display: flex;
+}
+
+.randomPizzaContainerLarge {
+  width: 50%;
+  height: 325px;
+  float: left;
+  display: flex;
+}
+
+.randomPizzaContainer:after {
+  content: "";
+  display: table;
+  clear:both;
+}
+
+ .container {
+  background-color: rgba(240, 60, 60, 0.8);
+}
+Status API Training Shop Blog About Pricing
+© 2016 GitHub, Inc. Terms Privacy Security Contact Help
