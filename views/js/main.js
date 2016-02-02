@@ -504,9 +504,8 @@ function updatePositions() {
   var items = document.querySelectorAll('.mover');
 
   var verticalPagePosition = (document.body.scrollTop / 1250);
-
+  //Optimization  Moved costly scrollToop out of the for loop
   for (var i = 0; i < items.length; i++) {
-
 
     var phase = Math.sin(verticalPagePosition + (i % 5));
 
@@ -524,12 +523,12 @@ function updatePositions() {
      Can we offload the CPU....
      The CSS 'transforms' property can help us here.
      */
-
-    var left = -items[i].basicLeft + 1000 * phase + 'px';
+    // Optimization to include the transform property
+    var left = -items[i].basicLeft + 100 * phase + 'px';
 
     items[i].style.transform = "translateX("+left+") translateZ(0)";
 
-    //items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -545,11 +544,12 @@ function updatePositions() {
 // runs updatePositions on scroll
 window.addEventListener('scroll', updatePositions);
 
+
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  //Do we need 200?
+  //Optimization Do we need 200? Reduced the number of pizza views by 88%
   for (var i = 0; i < 25; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
