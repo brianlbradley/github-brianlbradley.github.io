@@ -502,15 +502,13 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   var items = document.querySelectorAll('.mover');
-
-  var verticalPagePosition = (document.body.scrollTop / 1250);
-  //Optimization  Moved costly scrollToop out of the for loop
+ //Optimization  Moved costly scrollToop out of the for loop
+  var verticalPagePosition = (document.body.scrollTop / 125);
   for (var i = 0; i < items.length; i++) {
-
     var phase = Math.sin(verticalPagePosition + (i % 5));
 
      // Let's log out all these numbers and see!
-     console.log(phase,document.body.scrollTop / 1250)
+
 
      //Let's log out all these numbers and see!
      //console.log(phase,document.body.scrollTop / 1250)
