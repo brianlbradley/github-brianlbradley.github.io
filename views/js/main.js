@@ -456,8 +456,10 @@ var resizePizzas = function(size) {
       var pizzacount = document.querySelectorAll(".randomPizzaContainer").length;
 
     for (var i = 0; i < pizzacount; i++) {
-      document.getElementsByClassName(".randomPizzaContainer")[i].style.width = newwidth;
-    }
+
+     // previously the slower document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
+     document.getElementsByClassName("randomPizzaContainer")[i].style.width = newwidth;
+   }
   }
 
   changePizzaSizes(size);
