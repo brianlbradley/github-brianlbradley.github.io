@@ -1,30 +1,31 @@
 ## Website Performance Optimization portfolio project
 
-Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
+This project has two parts:
 
-To get started, check out the repository, inspect the code,
+Part 1
+  Optimize the index.html site to achieve 90 or higher on page speed insights https://developers.google.com/speed/pagespeed/insights/
+  The word "optimize" appears throughout the code to denote where specific optimization has occurred"
+     1)To achieve this i optimized the images in a program on my MAC called GIMP.  The images were too large, and GIMP allowed me to alter the size and also change the quality.
+     2)I chose to Inline the CSS from GoogleLeapis and from the style.css and print.css files.
+     3)I used ASYNC on the Javascript for faster page rendering.
+ Overall I achieved a page speed score of 91.
 
-### Getting started
+ Part 2
+   This challenge was to optimize Pizza.html for the page to run 60fps on scrolling. These optimizations were performed on main.js
+      1) Optimize the UpdatePositions function by moving the ScrollTop out of the for loop
+      2)Reduced the number of pizzas to 25 from 200 when the page loads  called by document.addEventListener('DOMContentLoaded', function()
+      3) The size of the pizzas on the switch slider needed to take < 5ms in the Console.  To achieve this i moved the for loop outside of the code and created a variable as part of the loop
 
-Some useful tips to help you get started:
 
-1. Check out the repository
-1. To inspect the site on your phone, you can run a local server
 
-  ```bash
-  $> cd /path/to/your-project-folder
-  $> python -m SimpleHTTPServer 8080
-  ```
-
-1. Open a browser and visit localhost:8080
-1. Download and install [ngrok](https://ngrok.com/) to make your local server accessible remotely.
-
-  ``` bash
-  $> cd /path/to/your-project-folder
-  $> ngrok 8080
-  ```
-
-1. Copy the public URL ngrok gives you and try running it through PageSpeed Insights! [More on integrating ngrok, Grunt and PageSpeed.](http://www.jamescryer.com/2014/06/12/grunt-pagespeed-and-ngrok-locally-testing/)
+Acknowledgements:
+-getElementsByClassName vs querySelector Allhttps://jsperf.com/getelementsbyclassname-vs-queryselectorAll/18
+-Susan from the Udacity private coaching helped with the general ideas for the project.
+-ScrollTop explanation   http://www.w3schools.com/jsref/prop_element_scrolltop.asp
+-Lynne-Daniels/GitHub for help with slider optimization
+-Two Udacity classes on Web Optimization
+-Remove Render-Blocking JavaScript  |  PageSpeed Insights  |  Google Developers
+-https://developers.google.com/speed/docs/insights/BlockingJS
 
 Profile, optimize, measure... and then lather, rinse, and repeat. Good luck!
 

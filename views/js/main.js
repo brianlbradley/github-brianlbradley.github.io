@@ -145,7 +145,7 @@ pizzaIngredients.crusts = [
 // Name generator pulled from http://saturdaykid.com/usernames/generator.html
 // Capitalizes first letter of each word
 String.prototype.capitalize = function() {
-  return this.charAt(0).toUpperCase() + this.slice(1);
+  return this.charat(0).toUpperCase() + this.slice(1);
 };
 
 // Pulls adjective out of array using random number sent from generator
@@ -448,11 +448,11 @@ var resizePizzas = function(size) {
   }
 
   // Iterates through pizza elements on the page and changes their widths
-  //<--!//Optimization- Move the for loop to achieve the resize in 5 ms -->
+  //<--!//Optimization- Move the for loop to achieve the resize in < 5 ms -->
  function changePizzaSizes(size) {
 
-      var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[1], size);
-      var newwidth = (document.querySelectorAll(".randomPizzaContainer")[1].offsetWidth + dx) + 'px';
+      var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
+      var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
       var pizzapies = document.querySelectorAll(".randomPizzaContainer").length;
 
     for (var i = 0; i < pizzapies; i++) {
@@ -476,7 +476,7 @@ var resizePizzas = function(size) {
 window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
-for (var i = 2; i < 100; i++) {
+for (var i = 0; i < 100; i++) {
   var pizzasDiv = document.getElementById("randomPizzas");
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
@@ -503,23 +503,8 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 
 // The following code for sliding background pizzas was pulled from Ilya's demo found at:
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
-
 // Moves the sliding background pizzas based on scroll position
-function updatePositions() {
-  frame++;
-  window.performance.mark("mark_start_frame");
 
-  var items = document.querySelectorAll('.mover');
- //Optimization  Moved costly scrollToop out of the for loop
-  var verticalPagePosition = (document.body.scrollTop / 125);
-  for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin(verticalPagePosition + (i % 5));
-
-     // Let's log out all these numbers and see!
-
-
-     //Let's log out all these numbers and see!
-     //console.log(phase,document.body.scrollTop / 1250)
 
      /* Using style.left is there a more efficient way to chanage the position of this object?
      It looks like the Layout gets retriggered every time we scroll.
@@ -530,12 +515,20 @@ function updatePositions() {
      The CSS 'transforms' property can help us here.
      */
     // Optimization to include the transform property
-    var left = -items[i].basicLeft + 100 * phase + 'px';
+    //Optimization  Moved costly scrollTop out of the for loop
 
-    items[i].style.transform = "translateX("+left+") translateZ(0)";
+function updatePositions() {
+  frame++;
+  window.performance.mark("mark_start_frame");
+   var items = document.querySelectorAll('.mover');
+     for (var i = 0; i < items.length; i++) {
+     var phase = Math.sin((document.body.scrollTop / 1250) /*speed they move*/+ (i % 5));//%5 is the number of sliding pizzas per row
+    // var left = items[i].basicLeft + 100 * phase + 'px';
 
-
+    items[i].style.transform = 'translateX(' + (300*phase) /*spread*/ + 'px)';
   }
+
+
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
@@ -555,7 +548,7 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  //Optimization Do we need 200? Reduced the number of pizza views by 88%
+  //Optimization Do we need 200? -Reduced the number of pizza views by 88%
   for (var i = 0; i < 25; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
