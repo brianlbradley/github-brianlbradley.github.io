@@ -1,7 +1,7 @@
 ## Website Performance Optimization portfolio project
 
 Visit my Github page at https://github.com/brianlbradley/github-brianlbradley.github.io
-to test out the WebSite.  The index.html site has the link to pizza.html.  By running a timeline in Developer Tools, the goal is to have the page run at 60 fps.  Also resizing the pizzas on the slider should take less than 5 ms.
+to test out the WebSite.  The index.html site has the link to pizza.html.  By running a timeline in Developer Tools, the goal is to have the page run at 60 fps.  Also resizing the pizzas on the slider should take less than 5 ms as denoted in the Console.
 
 Check out the repository
 To inspect the site on your phone, you can run a local server
