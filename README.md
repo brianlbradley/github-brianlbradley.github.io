@@ -1,5 +1,20 @@
 ## Website Performance Optimization portfolio project
 
+Visit my Github page at https://github.com/brianlbradley/github-brianlbradley.github.io
+to test out the WebSite.  The index.html site has the link to pizza.html.  By running a timeline in Developer Tools, the goal is to have the page run at 60 fps.  Also resizing the pizzas on the slider should take less than 5 ms.
+
+Check out the repository
+To inspect the site on your phone, you can run a local server
+
+$> cd /path/to/your-project-folder
+$> python -m SimpleHTTPServer 8080
+Open a browser and visit localhost:8080
+
+Download and install ngrok to make your local server accessible remotely.
+
+$> cd /path/to/your-project-folder
+$> ngrok 8080
+Copy the public URL ngrok gives you and try running it through PageSpeed Insights! More on integrating ngrok, Grunt and PageSpeed.
 This project has two parts:
 
 Part 1
@@ -8,17 +23,22 @@ Part 1
      1)To achieve this i optimized the images in a program on my MAC called GIMP.  The images were too large, and GIMP allowed me to alter the size and also change the quality.
      2)I chose to Inline the CSS from GoogleLeapis and from the style.css and print.css files.
      3)I used ASYNC on the Javascript for faster page rendering.
- Overall I achieved a page speed score of 91.
+ Overall I achieved a page speed score of 92.
 
  Part 2
    This challenge was to optimize Pizza.html for the page to run 60fps on scrolling. These optimizations were performed on main.js
       1) Optimize the UpdatePositions function by moving the ScrollTop out of the for loop
+         with the local variable top and the local variable phase.
       2)Reduced the number of pizzas to 25 from 200 when the page loads  called by document.addEventListener('DOMContentLoaded', function()
-      3) The size of the pizzas on the switch slider needed to take < 5ms in the Console.  To achieve this i moved the for loop outside of the code and created a variable as part of the loop
+      3) The size of the pizzas on the switch slider needed to take < 5ms in the Console.  To achieve this i moved the for loop outside of the code and created a variable as part of the loop.  I also created a variable  container = document.getElementsByClassName("randomPizzaContainer"); so the DOM is not explicitly touched in every iteration.
+      4)Changed many instances of the Web API call to getElementById from the slower querySelector
+      5)Moved the variable pizzasDiv out of the for loop.  This is the loop that loads all of the random pizzas when the page loads.
+      6)Moved variable elem out of for loop under the document.addEventListener('DOMContentLoaded', function(). Since using translateX of the transform property,  Changed elem.basicLeft = (i % cols) * s; to elem.style.left = (i % cols) * s + 'px'.Moved var movingPizzas out of the for loop.
 
 
 
 Acknowledgements:
+-Udacity instructor reviews
 -getElementsByClassName vs querySelector Allhttps://jsperf.com/getelementsbyclassname-vs-queryselectorAll/18
 -Susan from the Udacity private coaching helped with the general ideas for the project.
 -ScrollTop explanation   http://www.w3schools.com/jsref/prop_element_scrolltop.asp
