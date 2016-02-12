@@ -532,6 +532,7 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
     // Optimization to include the transform property
     //Optimization  Moved costly scrollTop out of the for loop and moved var phase out of
     //for loop
+    //Optimization - added transform property
 
 function updatePositions() {
   frame++;
