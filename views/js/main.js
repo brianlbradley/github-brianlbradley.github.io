@@ -530,7 +530,8 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
      The CSS 'transforms' property can help us here.
      */
     // Optimization to include the transform property
-    //Optimization  Moved costly scrollTop out of the for loop
+    //Optimization  Moved costly scrollTop out of the for loop and moved var phase out of
+    //for loop
 
 function updatePositions() {
   frame++;
@@ -539,7 +540,7 @@ function updatePositions() {
    var top = document.body.scrollTop / 1250;
    var phase;
      for (var i = 0; i < items.length; i++) {
-     var phase = Math.sin(top + i % 5); //%5 is the number of sliding pizzas per row
+     phase = Math.sin(top + i % 5); //%5 is the number of sliding pizzas per row
     // var left = items[i].basicLeft + 100 * phase + 'px';
 
     items[i].style.transform = 'translateX(' + 100 * phase + 'px)';
